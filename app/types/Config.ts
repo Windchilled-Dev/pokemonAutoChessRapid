@@ -377,9 +377,9 @@ export const ITEM_CAROUSEL_BASE_DURATION = 15000
 export const PORTAL_CAROUSEL_BASE_DURATION = 20000
 
 export const ItemCarouselStages = [4, 12, 17, 22, 27, 34]
-export const ItemProposalStages = [3, 15]
-export const AdditionalPicksStages = [5, 8, 11]
-export const PortalCarouselStages = [10, 20]
+export const ItemProposalStages = [2, 15]
+export const AdditionalPicksStages = [3, 5, 8]
+export const PortalCarouselStages = [7, 14]
 
 export const EloRankThreshold: { [key in EloRank]: number } = {
   [EloRank.BEGINNER]: 0,

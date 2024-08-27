@@ -1031,7 +1031,7 @@ export default class GameRoom extends Room<GameState> {
         }
       })
     }
-    return damage
+    return Math.ceil(damage*1.5)
   }
 
   rankPlayers() {

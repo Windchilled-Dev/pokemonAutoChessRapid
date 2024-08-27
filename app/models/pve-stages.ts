@@ -9,8 +9,11 @@ import {
 import { Pkm } from "../types/enum/Pokemon"
 import { pickNRandomIn, pickRandomIn } from "../utils/random"
 import Player from "./colyseus-models/player"
+import { Synergy } from "../types/enum/Synergy"
+import { DungeonDetails, DungeonPMDO } from "../types/enum/Dungeon"
 
 export type PVEStage = {
+  regionalUnits?: boolean
   name: string
   avatar: Pkm
   emotion?: Emotion
@@ -18,25 +21,63 @@ export type PVEStage = {
   getRewards?: (player: Player) => Item[]
   getRewardsPropositions?: (player: Player) => Item[]
   board: [pkm: Pkm, x: number, y: number][]
+  getBoblems?: (player: Player) => Pkm[]
+}
+
+export const Boblems: Record<
+  (Synergy)[number],
+  Pkm
+> = {
+  [Synergy.NORMAL]: Pkm.AIPOM,
+  [Synergy.GRASS]: Pkm.TANGELA,
+  [Synergy.FIRE]: Pkm.GROWLITHE,
+  [Synergy.WATER]: Pkm.PSYDUCK,
+  [Synergy.ELECTRIC]: Pkm.VOLTORB,
+  [Synergy.FIGHTING]: Pkm.SCRAGGY,
+  [Synergy.PSYCHIC]: Pkm.SLOWPOKE,
+  [Synergy.DARK]: Pkm.ZORUA,
+  [Synergy.STEEL]: Pkm.ALOLAN_DIGLETT,
+  [Synergy.GROUND]: Pkm.SANDSHREW,
+  [Synergy.POISON]: Pkm.EKANS,
+  [Synergy.DRAGON]: Pkm.BAGON,
+  [Synergy.FIELD]: Pkm.HISUI_GROWLITHE,
+  [Synergy.MONSTER]: Pkm.CRANIDOS,
+  [Synergy.HUMAN]: Pkm.IMPIDIMP,
+  [Synergy.AQUATIC]: Pkm.CORPHISH,
+  [Synergy.BUG]: Pkm.VENONAT,
+  [Synergy.FLYING]: Pkm.RUFFLET,
+  [Synergy.FLORA]: Pkm.FLABEBE,
+  [Synergy.ROCK]: Pkm.ARCHEN,
+  [Synergy.GHOST]: Pkm.HISUI_ZORUA,
+  [Synergy.FAIRY]: Pkm.HATENNA,
+  [Synergy.ICE]: Pkm.SPHEAL,
+  [Synergy.FOSSIL]: Pkm.ANORITH,
+  [Synergy.SOUND]: Pkm.WOOBAT,
+  [Synergy.ARTIFICIAL]: Pkm.NOSEPASS,
+  [Synergy.LIGHT]: Pkm.CHINCHOU,
+  [Synergy.WILD]: Pkm.BIDOOF,
+  [Synergy.BABY]: Pkm.CLEFFA,
+  [Synergy.AMORPHOUS]: Pkm.GRIMER
 }
 
 export const PVEStages: { [turn: number]: PVEStage } = {
   1: {
+    regionalUnits: true,
     name: "pkm.MAGIKARP",
     avatar: Pkm.MAGIKARP,
     board: [
       [Pkm.MAGIKARP, 3, 1],
-      [Pkm.MAGIKARP, 5, 1]
+      [Pkm.MAGIKARP, 5, 1],
+      
     ],
     shinyChance: 1 / 40,
     getRewards(player: Player) {
-      const randomComponent = pickRandomIn(NonSpecialItemComponents)
-      player.randomComponentsGiven.push(randomComponent)
-      return [randomComponent]
+      const randomComponents = pickNRandomIn(ItemComponents, 3)
+      return randomComponents
     }
   },
 
-  2: {
+  /*2: {
     name: "pkm.RATTATA",
     avatar: Pkm.RATTATA,
     board: [
@@ -71,9 +112,28 @@ export const PVEStages: { [turn: number]: PVEStage } = {
       player.randomComponentsGiven.push(randomComponent)
       return [randomComponent]
     }
-  },
+  },*/
 
-  9: {
+  6: {
+    name: "horde_battle",
+    avatar: Pkm.RATICATE,
+    board: [
+      [Pkm.RATICATE, 3, 1],
+      [Pkm.RATTATA, 5, 1],
+      [Pkm.SPEAROW, 2, 2],
+      [Pkm.RATTATA, 6, 1],
+      [Pkm.SPEAROW, 4, 2]
+    ],
+    shinyChance: 1 / 40,
+    getRewards(player: Player) {
+      const randomComponents = pickNRandomIn(ItemComponents, 3)
+      return randomComponents
+    }
+  },
+  
+
+  10: {
+    regionalUnits: true,
     name: "pkm.GYARADOS",
     avatar: Pkm.GYARADOS,
     shinyChance: 1 / 40,
@@ -84,7 +144,7 @@ export const PVEStages: { [turn: number]: PVEStage } = {
     }
   },
 
-  14: {
+  13: {
     name: "pkm.MEWTWO",
     avatar: Pkm.MEWTWO,
     emotion: Emotion.DETERMINED,

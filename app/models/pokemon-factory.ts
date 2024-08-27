@@ -1,16 +1,40 @@
-import { MapSchema } from "@colyseus/schema"
+import { ArraySchema, MapSchema } from "@colyseus/schema"
 import { Emotion, IPlayer } from "../types"
 import { Pkm, PkmFamily, PkmIndex } from "../types/enum/Pokemon"
 import { logger } from "../utils/logger"
 import { Pokemon, PokemonClasses } from "./colyseus-models/pokemon"
-import { PVEStage } from "./pve-stages"
+import { PVEStage, Boblems } from "./pve-stages"
+import { DungeonDetails, DungeonPMDO } from "../types/enum/Dungeon"
+import { resetArraySchema } from "../utils/schemas"
+
 
 export default class PokemonFactory {
   static makePveBoard(
     pveStage: PVEStage,
-    shinyEncounter: boolean
+    shinyEncounter: boolean,
+    player: IPlayer
   ): MapSchema<Pokemon> {
     const pokemons = new MapSchema<Pokemon>()
+    let pveBoard = pveStage.board
+    let map = player.map
+
+    if(pveStage.regionalUnits){
+      const regionalSpawns = [[2,1],[3,2],[7,1]]
+      
+      const regionSynergies = DungeonDetails[map]?.synergies
+
+      
+      const boblems = new ArraySchema<Pkm>()
+      regionSynergies.forEach((type) => {
+        boblems.push(Boblems[type])
+      })
+
+      for(let i=0; i<boblems.length; i++){
+        pveBoard.push([boblems[i], regionalSpawns[i][0], regionalSpawns[i][1]])
+      }
+
+    }
+    
     pveStage.board.forEach(([pkm, x, y]) => {
       const pokemon = PokemonFactory.createPokemonFromName(pkm, {
         selectedEmotion: pveStage.emotion ?? Emotion.NORMAL,

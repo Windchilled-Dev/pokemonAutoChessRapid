@@ -72,6 +72,7 @@ import { chance, pickNRandomIn, pickRandomIn } from "../../utils/random"
 import { resetArraySchema, values } from "../../utils/schemas"
 import { getWeather } from "../../utils/weather"
 import GameRoom from "../game-room"
+import { MapSchema } from "@colyseus/schema"
 
 export class OnShopCommand extends Command<
   GameRoom,
@@ -972,9 +973,10 @@ export class OnUpdatePhaseCommand extends Command<GameRoom> {
       let income = 0
       if (player.alive && !player.isBot) {
         player.interest = Math.min(Math.floor(player.money / 10), 5)
-        income += player.interest
+        income += player.interest * 2
         income += max(5)(player.streak)
         income += 5
+        income += Math.ceil(this.state.stageLevel / 2)
         player.money += income
         if (income > 0) {
           const client = this.room.clients.find(
@@ -1324,8 +1326,10 @@ export class OnUpdatePhaseCommand extends Command<GameRoom> {
 
           const pveBoard = PokemonFactory.makePveBoard(
             pveStage,
-            this.state.shinyEncounter
+            this.state.shinyEncounter,
+            player
           )
+
           const weather = getWeather(player.board, pveBoard)
           const simulation = new Simulation(
             nanoid(),
@@ -1337,6 +1341,7 @@ export class OnUpdatePhaseCommand extends Command<GameRoom> {
             this.state.stageLevel,
             weather
           )
+          
           player.simulationId = simulation.id
           player.simulationTeamIndex = 0
           this.state.simulations.set(simulation.id, simulation)
