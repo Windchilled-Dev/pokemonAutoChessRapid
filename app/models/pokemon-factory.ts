@@ -17,7 +17,7 @@ export default class PokemonFactory {
     const pokemons = new MapSchema<Pokemon>()
     let pveBoard = pveStage.board
     let map = player.map
-
+    /*
     if(pveStage.regionalUnits){
       const regionalSpawns = [[2,1],[3,2],[7,1]]
       
@@ -34,7 +34,7 @@ export default class PokemonFactory {
       }
 
     }
-    
+    */
     pveStage.board.forEach(([pkm, x, y]) => {
       const pokemon = PokemonFactory.createPokemonFromName(pkm, {
         selectedEmotion: pveStage.emotion ?? Emotion.NORMAL,
