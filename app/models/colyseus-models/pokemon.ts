@@ -14480,6 +14480,43 @@ export class Pyukumuku extends Pokemon {
   attackSprite = AttackSprite.WATER_MELEE
 }
 
+export class Taillow extends Pokemon {
+  types = new SetSchema<Synergy>([
+    Synergy.NORMAL,
+    Synergy.AIR
+  ])
+  rarity = Rarity.EPIC
+  stars = 1
+  evolution = Pkm.SWELLOW
+  hp = 80
+  atk = 10
+  def = 1
+  speDef = 1
+  maxPP = 55
+  range = 1
+  skill = Ability.REVERSAL
+  attackSprite = AttackSprite.FLYING_MELEE
+  regional = true
+}
+
+export class Swellow extends Pokemon {
+  types = new SetSchema<Synergy>([
+    Synergy.NORMAL,
+    Synergy.AIR
+  ])
+  rarity = Rarity.EPIC
+  stars = 2
+  hp = 160
+  atk = 23
+  def = 2
+  speDef = 2
+  maxPP = 55
+  range = 1
+  skill = Ability.REVERSAL
+  attackSprite = AttackSprite.FLYING_MELEE
+  regional = true
+}
+
 export const PokemonClasses: Record<
   Pkm,
   new (
@@ -15307,5 +15344,7 @@ export const PokemonClasses: Record<
   [Pkm.WISHIWASHI_SCHOOL]: WishiwashiSchool,
   [Pkm.PAWMI]: Pawmi,
   [Pkm.PAWMO]: Pawmo,
-  [Pkm.PAWMOT]: Pawmot
+  [Pkm.PAWMOT]: Pawmot,
+  [Pkm.TAILLOW]: Taillow,
+  [Pkm.SWELLOW]: Swellow
 }

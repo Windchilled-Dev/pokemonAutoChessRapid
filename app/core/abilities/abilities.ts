@@ -9565,6 +9565,27 @@ export class PurifyStrategy extends AbilityStrategy {
   }
 }
 
+export class ReversalStrategy extends AbilityStrategy {
+  process(
+    pokemon: PokemonEntity,
+    state: PokemonState,
+    board: Board,
+    target: PokemonEntity,
+    crit: boolean
+  ) {
+    super.process(pokemon, state, board, target, crit)
+
+    const damage = 100 - Math.round(pokemon.life / pokemon.hp)
+    target.handleSpecialDamage(
+      damage,
+      board,
+      AttackType.SPECIAL,
+      pokemon,
+      crit
+    )
+  }
+}
+
 export * from "./hidden-power"
 
 export const AbilityStrategies: { [key in Ability]: AbilityStrategy } = {
@@ -9918,5 +9939,6 @@ export const AbilityStrategies: { [key in Ability]: AbilityStrategy } = {
   [Ability.FELL_STINGER]: new FellStingerStrategy(),
   [Ability.GULP_MISSILE]: new GulpMissileStrategy(),
   [Ability.SCHOOLING]: new SchoolingStrategy(),
-  [Ability.DOUBLE_SHOCK]: new DoubleShockStrategy()
+  [Ability.DOUBLE_SHOCK]: new DoubleShockStrategy(),
+  [Ability.REVERSAL]: new ReversalStrategy()
 }

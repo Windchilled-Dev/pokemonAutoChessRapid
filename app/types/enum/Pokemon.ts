@@ -821,7 +821,9 @@ export enum Pkm {
   WISHIWASHI_SCHOOL = "WISHIWASHI_SCHOOL",
   PAWMI = "PAWMI",
   PAWMO = "PAWMO",
-  PAWMOT = "PAWMOT"
+  PAWMOT = "PAWMOT",
+  TAILLOW = "TAILLOW",
+  SWELLOW = "SWELLOW"
 }
 
 export const PkmIndex: { [key in Pkm]: string } = {
@@ -1645,7 +1647,9 @@ export const PkmIndex: { [key in Pkm]: string } = {
   [Pkm.WISHIWASHI_SCHOOL]: "0746-0001",
   [Pkm.PAWMI]: "0921",
   [Pkm.PAWMO]: "0922",
-  [Pkm.PAWMOT]: "0923"
+  [Pkm.PAWMOT]: "0923",
+  [Pkm.TAILLOW]: "0276",
+  [Pkm.SWELLOW]: "0277"
 }
 
 export const PkmFamily: { [key in Pkm]: Pkm } = {
@@ -2469,7 +2473,9 @@ export const PkmFamily: { [key in Pkm]: Pkm } = {
   [Pkm.WISHIWASHI_SCHOOL]: Pkm.WISHIWASHI,
   [Pkm.PAWMI]: Pkm.PAWMI,
   [Pkm.PAWMO]: Pkm.PAWMI,
-  [Pkm.PAWMOT]: Pkm.PAWMI
+  [Pkm.PAWMOT]: Pkm.PAWMI,
+  [Pkm.TAILLOW]: Pkm.TAILLOW,
+  [Pkm.SWELLOW]: Pkm.TAILLOW
 }
 
 export const PkmRegionalVariants: { [key in Pkm]?: Pkm[] } = {
@@ -6739,5 +6745,15 @@ export const AnimationConfig: {
     attack: AnimationType.Attack,
     ability: AnimationType.Shoot,
     emote: AnimationType.Rumble
+  },
+  [Pkm.TAILLOW]: {
+    attack: AnimationType.Attack,
+    ability: AnimationType.QuickStrike,
+    emote: AnimationType.FlapAround
+  },
+  [Pkm.SWELLOW]: {
+    attack: AnimationType.Attack,
+    ability: AnimationType.QuickStrike,
+    emote: AnimationType.FlapAround
   }
 }
