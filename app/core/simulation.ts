@@ -1306,6 +1306,22 @@ export default class Simulation extends Schema implements ISimulation {
           break
         }
 
+        case Effect.GUST: {
+          pokemon.airBubbled = true
+          break
+        }
+
+        case Effect.HURRICANE: {
+          pokemon.airBubbled = true
+          break
+        }
+
+        case Effect.AEROBLAST: {
+          pokemon.airBubbled = true
+          pokemon.range += 1
+          break
+        }
+
         default:
           break
       }

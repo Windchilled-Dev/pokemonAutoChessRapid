@@ -229,6 +229,12 @@ export default class BattleManager {
         } else {
           pkm.removePokerus()
         }
+      } else if (field === "bubbleStacks") {
+        if (pokemon.status.bubbleStacks > 0) {
+          pkm.addBubbled()
+        } else {
+          pkm.removeBubbled()
+        }
       } else if (field === "locked") {
         if (pokemon.status.locked) {
           pkm.addLocked()

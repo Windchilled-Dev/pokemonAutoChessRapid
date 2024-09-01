@@ -43,7 +43,9 @@ export default class PokemonState {
           } else if (target.effects.has(Effect.DIAMOND_STORM)) {
             opponentCritPower -= 0.7
           }
+         
           damage = Math.round(damage * opponentCritPower)
+
         }
         pokemon.onCriticalAttack({ target, board, damage })
       }
@@ -112,6 +114,11 @@ export default class PokemonState {
         isAttackSuccessful = false
         damage = 0
       }
+      if (target.status.bubbleStacks > 0) {
+        isAttackSuccessful = false
+        damage = 0
+        target.status.bubbleStacks--
+      }
 
       if (trueDamagePart > 0) {
         // Apply true damage part
@@ -167,6 +174,7 @@ export default class PokemonState {
       }
 
       const totalDamage = physicalDamage + specialDamage + trueDamage
+
       pokemon.onAttack({
         target,
         board,
@@ -185,6 +193,7 @@ export default class PokemonState {
           trueDamage
         })
       }
+      
     }
   }
 

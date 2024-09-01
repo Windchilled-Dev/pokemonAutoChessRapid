@@ -15,6 +15,7 @@ export default class Status extends Schema implements IStatus {
   @type("boolean") burn = false
   @type("boolean") silence = false
   @type("number") poisonStacks = 0
+  @type("number") bubbleStacks = 0
   @type("boolean") freeze = false
   @type("boolean") protect = false
   @type("boolean") sleep = false
@@ -561,6 +562,18 @@ export default class Status extends Schema implements IStatus {
     } else {
       this.silenceCooldown -= dt
     }
+  }
+
+  triggerBubbled(pkm: PokemonEntity) {
+    let stacks = 2
+    if (pkm.effects.has(Effect.HURRICANE)) {
+      stacks = 4
+    }
+    if (pkm.effects.has(Effect.AEROBLAST)) {
+      stacks = 6
+    }
+
+    this.bubbleStacks = stacks
   }
 
   triggerPoison(

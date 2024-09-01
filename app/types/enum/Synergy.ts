@@ -30,7 +30,8 @@ export enum Synergy {
   LIGHT = "LIGHT",
   WILD = "WILD",
   BABY = "BABY",
-  AMORPHOUS = "AMORPHOUS"
+  AMORPHOUS = "AMORPHOUS",
+  AIR = "AIR"
 }
 
 export const SynergyEffects: { [key in Synergy]: Effect[] } = Object.freeze({
@@ -148,5 +149,6 @@ export const SynergyEffects: { [key in Synergy]: Effect[] } = Object.freeze({
     Effect.HUSTLE,
     Effect.BERSERK
   ],
-  [Synergy.AMORPHOUS]: [Effect.FLUID, Effect.SHAPELESS, Effect.ETHEREAL]
+  [Synergy.AMORPHOUS]: [Effect.FLUID, Effect.SHAPELESS, Effect.ETHEREAL],
+  [Synergy.AIR]: [Effect.GUST, Effect.HURRICANE, Effect.AEROBLAST]
 })

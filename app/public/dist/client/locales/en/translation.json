@@ -1668,7 +1668,10 @@
     "BERSERK": "Berserk",
     "FLUID": "Fluid",
     "SHAPELESS": "Shapeless",
-    "ETHEREAL": "Ethereal"
+    "ETHEREAL": "Ethereal",
+    "GUST": "Gust",
+    "HURRICANE": "Hurricane",
+    "AEROBLAST": "Aeroblast"
   },
   "effect_description": {
     "STAMINA": "Gain 15 SHIELD",
@@ -1788,7 +1791,10 @@
     "BERSERK": "+100% ATK and move speed, RAGE 5 seconds sooner",
     "FLUID": "Ally team gains 1% ATK_SPEED and 4 HP per unique active synergy",
     "SHAPELESS": "Ally team gains 3% ATK_SPEED and 8 HP per unique active synergy",
-    "ETHEREAL": "Ally team gains 5% ATK_SPEED and 12 HP per unique active synergy"
+    "ETHEREAL": "Ally team gains 5% ATK_SPEED and 12 HP per unique active synergy",
+    "GUST": "When below 50% HP, your Pokémon create an Air Bubble, protecting against 2 basic attacks",
+    "HURRICANE": "Air Bubbles now protect against 4 attacks",
+    "AEROBLAST": "Air bubbles now protect against 6 basic attacks. Your whole team gains +1 RANGE"
   },
   "item": {
     "FOSSIL_STONE": "Fossil Stone",
@@ -2226,7 +2232,8 @@
     "BABY": "Baby",
     "LIGHT": "Light",
     "WILD": "Wild",
-    "AMORPHOUS": "Amorphous"
+    "AMORPHOUS": "Amorphous",
+    "AIR": "Air"
   },
   "synergy_description": {
     "NORMAL": "NORMAL Pokémons and their adjacent allies gain SHIELD when combat starts",
@@ -2261,7 +2268,8 @@
     "LIGHT": "LIGHT reveal a spotlight on the battlefield. The unit standing in the spotlight at the start of combat gains unique bonuses",
     "WILD": "WILD Pokémons get increased ATK, move faster, and have 25% chance to WOUND their target. For each WILD Pokémon STAR on board, get +1% chance to find WILD in your shops + 5% chance during PvE rounds{{additionalInfo}}",
     "WILD_ADDITIONAL": "\n\nCurrent chance to find a WILD pokemon: {{wildChance}}%",
-    "AMORPHOUS": "AMORPHOUS Pokémons are extremely flexible and lack their own shape. Your team gains HP and ATK_SPEED by activating a wide variety of synergies."
+    "AMORPHOUS": "AMORPHOUS Pokémons are extremely flexible and lack their own shape. Your team gains HP and ATK_SPEED by activating a wide variety of synergies.",
+    "AIR": "AIR Pokémons control the flow of air, gaining protective air bubbles and extra range."
   },
   "title": {
     "NOVICE": "Novice",

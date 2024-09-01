@@ -52,6 +52,7 @@ export class AttackCommand extends SimulationCommand {
 
   execute(): void {
     this.pokemon.state.attack(this.pokemon, this.board, this.targetCoordinate)
+
     if (
       this.pokemon.effects.has(Effect.RISING_VOLTAGE) ||
       this.pokemon.effects.has(Effect.OVERDRIVE) ||

@@ -106,6 +106,7 @@ export class PokemonEntity extends Schema implements IPokemonEntity {
   specialDamageReduced: number
   shieldDamageTaken: number
   shieldDone: number
+  airBubbled = false
   flyingProtection = 0
   growGroundTimer = 3000
   grassHealCooldown = 2000
@@ -1064,6 +1065,19 @@ export class PokemonEntity extends Schema implements IPokemonEntity {
       this.items.delete(Item.ABSORB_BULB)
     }
 
+    // Air Bubble
+    if (this.life > 0 && 
+        this.airBubbled) {
+      const pcLife = this.life / this.hp
+
+      if (
+          pcLife < 0.5 &&
+          this.airBubbled === true) {
+            this.status.triggerBubbled(this)
+            this.airBubbled = false
+          }
+    }
+
     // Flying protection
     if (
       this.flyingProtection > 0 &&
@@ -1566,6 +1580,7 @@ export class PokemonEntity extends Schema implements IPokemonEntity {
     this.status.resurection = false // prevent reapplying max revive again
     this.shield = 0 // prevent reapplying shield again
     this.flyingProtection = 0 // prevent flying effects twice
+    this.airBubbled = false
     SynergyEffects[Synergy.FOSSIL].forEach((fossilResurectEffect) =>
       this.effects.delete(fossilResurectEffect)
     ) // prevent resurecting fossils twice

@@ -93,6 +93,7 @@ export default class PokemonSprite extends DraggableObject {
   confusion: GameObjects.Sprite | undefined
   paralysis: GameObjects.Sprite | undefined
   pokerus: GameObjects.Sprite | undefined
+  bubbled: GameObjects.Sprite | undefined
   locked: GameObjects.Sprite | undefined
   armorReduction: GameObjects.Sprite | undefined
   charm: GameObjects.Sprite | undefined
@@ -718,6 +719,23 @@ export default class PokemonSprite extends DraggableObject {
     if (this.pokerus) {
       this.remove(this.pokerus, true)
       this.pokerus = undefined
+    }
+  }
+
+  addBubbled() {
+    if (!this.bubbled) {
+      this.bubbled = this.scene.add
+        .sprite(0, -20, "status", "BUBBLED/000.png")
+        .setScale(1.5)
+      this.bubbled.anims.play("BUBBLED")
+      this.add(this.bubbled)
+    }
+  }
+
+  removeBubbled() {
+    if (this.bubbled) {
+      this.remove(this.bubbled, true)
+      this.bubbled = undefined
     }
   }
 

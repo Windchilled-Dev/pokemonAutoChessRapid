@@ -599,6 +599,7 @@ export interface IStatus {
   paralysis: boolean
   pokerus: boolean
   locked: boolean
+  bubbleStacks: number
   armorReduction: boolean
   runeProtect: boolean
   electricField: boolean

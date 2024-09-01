@@ -10,6 +10,8 @@ import { PokemonEntity } from "./pokemon-entity"
 import PokemonState from "./pokemon-state"
 import { AttackCommand } from "./simulation-command"
 import { getAttackTimings } from "../public/src/game/animation-manager"
+import { Synergy } from "../types/enum/Synergy"
+import { SynergyTriggers } from "../types/Config"
 
 export default class AttackingState extends PokemonState {
   update(
@@ -74,7 +76,8 @@ export default class AttackingState extends PokemonState {
         let crit = false
         if (pokemon.items.has(Item.REAPER_CLOTH)) {
           crit = chance(pokemon.critChance / 100)
-        }
+        }     
+
         AbilityStrategies[pokemon.skill].process(
           pokemon,
           this,
