@@ -509,7 +509,7 @@ export default class Simulation extends Schema implements ISimulation {
       switch (weatherEffect) {
         case Effect.WINDY:
           pokemon.addDodgeChance(
-            pokemon.types.has(Synergy.FLYING) ? 0.2 : 0.1,
+            (pokemon.types.has(Synergy.FLYING)||pokemon.types.has(Synergy.AIR)) ? 0.2 : 0.1,
             pokemon,
             0,
             false

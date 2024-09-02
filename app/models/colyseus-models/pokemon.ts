@@ -982,7 +982,7 @@ export class Seismitoad extends Pokemon {
 }
 
 export class Bagon extends Pokemon {
-  types = new SetSchema<Synergy>([Synergy.DRAGON, Synergy.MONSTER, Synergy.AIR])
+  types = new SetSchema<Synergy>([Synergy.DRAGON, Synergy.MONSTER])
   rarity = Rarity.UNCOMMON
   stars = 1
   evolution = Pkm.SHELGON
@@ -997,7 +997,7 @@ export class Bagon extends Pokemon {
 }
 
 export class Shelgon extends Pokemon {
-  types = new SetSchema<Synergy>([Synergy.DRAGON, Synergy.MONSTER, Synergy.AIR])
+  types = new SetSchema<Synergy>([Synergy.DRAGON, Synergy.MONSTER])
   rarity = Rarity.UNCOMMON
   stars = 2
   evolution = Pkm.SALAMENCE
@@ -3441,7 +3441,7 @@ export class Machamp extends Pokemon {
 }
 
 export class Piplup extends Pokemon {
-  types = new SetSchema<Synergy>([Synergy.WATER, Synergy.FLYING, Synergy.STEEL])
+  types = new SetSchema<Synergy>([Synergy.WATER, Synergy.AIR, Synergy.STEEL])
   rarity = Rarity.UNCOMMON
   stars = 1
   evolution = Pkm.PRINPLUP
@@ -3456,7 +3456,7 @@ export class Piplup extends Pokemon {
 }
 
 export class Prinplup extends Pokemon {
-  types = new SetSchema<Synergy>([Synergy.WATER, Synergy.FLYING, Synergy.STEEL])
+  types = new SetSchema<Synergy>([Synergy.WATER, Synergy.AIR, Synergy.STEEL])
   rarity = Rarity.UNCOMMON
   stars = 2
   evolution = Pkm.EMPOLEON
@@ -3471,7 +3471,7 @@ export class Prinplup extends Pokemon {
 }
 
 export class Empoleon extends Pokemon {
-  types = new SetSchema<Synergy>([Synergy.WATER, Synergy.FLYING, Synergy.STEEL])
+  types = new SetSchema<Synergy>([Synergy.WATER, Synergy.AIR, Synergy.STEEL])
   rarity = Rarity.UNCOMMON
   stars = 3
   hp = 240
@@ -11920,7 +11920,7 @@ export class CherrimSunlight extends Pokemon {
 export class Misdreavus extends Pokemon {
   types = new SetSchema<Synergy>([
     Synergy.GHOST,
-    Synergy.FAIRY,
+    Synergy.AIR,
     Synergy.AMORPHOUS
   ])
   rarity = Rarity.EPIC
@@ -11940,7 +11940,7 @@ export class Misdreavus extends Pokemon {
 export class Mismagius extends Pokemon {
   types = new SetSchema<Synergy>([
     Synergy.GHOST,
-    Synergy.FAIRY,
+    Synergy.AIR,
     Synergy.AMORPHOUS
   ])
   rarity = Rarity.EPIC
@@ -14517,6 +14517,59 @@ export class Swellow extends Pokemon {
   regional = true
 }
 
+export class Rookidee extends Pokemon {
+  types = new SetSchema<Synergy>([
+    Synergy.FLYING,
+    Synergy.STEEL
+  ])
+  rarity = Rarity.UNCOMMON
+  stars = 1
+  evolution = Pkm.CORVISQUIRE
+  hp = 60
+  atk = 8
+  def = 2
+  speDef = 2
+  maxPP = 80
+  range = 1
+  skill = Ability.STEEL_WING
+  attackSprite = AttackSprite.FLYING_MELEE
+}
+
+export class Corvisquire extends Pokemon {
+  types = new SetSchema<Synergy>([
+    Synergy.FLYING,
+    Synergy.STEEL
+  ])
+  rarity = Rarity.UNCOMMON
+  stars = 2
+  evolution = Pkm.CORVIKNIGHT
+  hp = 140
+  atk = 13
+  def = 2
+  speDef = 3
+  maxPP = 80
+  range = 1
+  skill = Ability.STEEL_WING
+  attackSprite = AttackSprite.FLYING_MELEE
+}
+
+export class Corviknight extends Pokemon {
+  types = new SetSchema<Synergy>([
+    Synergy.FLYING,
+    Synergy.STEEL
+  ])
+  rarity = Rarity.UNCOMMON
+  stars = 3
+  hp = 240
+  atk = 18
+  def = 6
+  speDef = 6
+  maxPP = 55
+  range = 1
+  skill = Ability.STEEL_WING
+  attackSprite = AttackSprite.STEEL_MELEE
+}
+
 export const PokemonClasses: Record<
   Pkm,
   new (
@@ -15346,5 +15399,8 @@ export const PokemonClasses: Record<
   [Pkm.PAWMO]: Pawmo,
   [Pkm.PAWMOT]: Pawmot,
   [Pkm.TAILLOW]: Taillow,
-  [Pkm.SWELLOW]: Swellow
+  [Pkm.SWELLOW]: Swellow,
+  [Pkm.ROOKIDEE]: Rookidee,
+  [Pkm.CORVISQUIRE]: Corvisquire,
+  [Pkm.CORVIKNIGHT]: Corviknight
 }

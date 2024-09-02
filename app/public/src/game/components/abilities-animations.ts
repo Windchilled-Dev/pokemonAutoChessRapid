@@ -1268,6 +1268,14 @@ export function displayAbility(
       addAbilitySprite(skill, coordinatesTarget, true).setScale(2)
       break
 
+    case Ability.STEEL_WING:
+      addAbilitySprite(skill, coordinatesTarget, true).setScale(2)
+      break
+
+    case "STEEL_WING/feathers":
+      addAbilitySprite("STEEL_WING/feathers", coordinatesTarget, true).setScale(2)
+      break
+
     case Ability.WATERFALL:
       addAbilitySprite(skill, coordinates, true).setScale(2)
       break
@@ -1660,6 +1668,10 @@ export function displayAbility(
       break
 
     case Ability.DRAIN_PUNCH:
+      addAbilitySprite(skill, coordinatesTarget, true).setScale(2)
+      break
+
+    case Ability.REVERSAL:
       addAbilitySprite(skill, coordinatesTarget, true).setScale(2)
       break
 

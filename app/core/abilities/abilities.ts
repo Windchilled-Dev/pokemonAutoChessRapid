@@ -9575,7 +9575,7 @@ export class ReversalStrategy extends AbilityStrategy {
   ) {
     super.process(pokemon, state, board, target, crit)
 
-    const damage = 100 - Math.round(pokemon.life / pokemon.hp)
+    const damage = 100 - Math.round((pokemon.life - pokemon.shield) / pokemon.hp)
     target.handleSpecialDamage(
       damage,
       board,
@@ -9583,6 +9583,37 @@ export class ReversalStrategy extends AbilityStrategy {
       pokemon,
       crit
     )
+  }
+}
+
+export class SteelWingStrategy extends AbilityStrategy {
+  process(
+    pokemon: PokemonEntity,
+    state: PokemonState,
+    board: Board,
+    target: PokemonEntity,
+    crit: boolean
+  ) {
+    super.process(pokemon, state, board, target, crit)
+    let damage = 20
+    let buff = 1
+    if (pokemon.stars === 2) {
+      damage = 30
+      buff = 3
+    }
+    if (pokemon.stars === 3) {
+      damage = 60
+      buff = 5
+    }
+    pokemon.addDefense(buff, pokemon, 1, false)
+    target.handleSpecialDamage(damage, board, AttackType.SPECIAL, pokemon, crit)
+
+    pokemon.simulation.room.broadcast(Transfer.ABILITY, {
+      id: pokemon.simulation.id,
+      skill: "STEEL_WING/feathers",
+      positionX: target.positionX,
+      positionY: target.positionY
+    })
   }
 }
 
@@ -9940,5 +9971,6 @@ export const AbilityStrategies: { [key in Ability]: AbilityStrategy } = {
   [Ability.GULP_MISSILE]: new GulpMissileStrategy(),
   [Ability.SCHOOLING]: new SchoolingStrategy(),
   [Ability.DOUBLE_SHOCK]: new DoubleShockStrategy(),
-  [Ability.REVERSAL]: new ReversalStrategy()
+  [Ability.REVERSAL]: new ReversalStrategy(),
+  [Ability.STEEL_WING]: new SteelWingStrategy()
 }

@@ -372,7 +372,8 @@
     "GULP_MISSILE": "Gulp Missile",
     "SCHOOLING": "Schooling",
     "DOUBLE_SHOCK": "Double Shock",
-    "REVERSAL": "Reversal"
+    "REVERSAL": "Reversal",
+    "STEEL_WING": "Steel Wing"
   },
   "pkm": {
     "DEFAULT": "MissingNo.",
@@ -1198,7 +1199,10 @@
     "PAWMO": "Pawmo",
     "PAWMOT": "Pawmot",
     "TAILLOW": "Taillow",
-    "SWELLOW": "Swellow"
+    "SWELLOW": "Swellow",
+    "ROOKIDEE": "Rookidee",
+    "CORVISQUIRE": "Corvisquire",
+    "CORVIKNIGHT": "Corviknight"
   },
   "ability_description": {
     "SOFT_BOILED": "Cures all status effects and grants [20,40,80,SP] SHIELD to every allied Pokémon",
@@ -1551,7 +1555,8 @@
     "SCHOOLING": "Deals [10,SP]% of its max HP as SPECIAL to the target and adjacent enemies. If a Wishiwashi is on the bench, it joins the school and gives 50 permanent HP to the user.",
     "DOUBLE_SHOCK": "The user emits a powerful electric shock, dealing [50,100,200,SP] SPECIAL. The user is PARALYSIS for 3 seconds.",
     "PURIFY": "Clear negative status and heal the user for [15,30,60,SP] HP.",
-    "REVERSAL": "Deals [1,SP] SPECIAL per % of user max HP missing"
+    "REVERSAL": "Deals [1,SP] SPECIAL per % of user max HP missing",
+    "STEEL_WING": "Deal [20,30,60,SP] SPECIAL to the target and buff the user's DEF by [1,3,5,SP]"
   },
   "effect": {
     "INGRAIN": "Ingrain",
@@ -1781,7 +1786,7 @@
     "RAIN": "+3 PP per second\n-30% BURN and POISONNED damage",
     "STORM": "Lightning randomly falls on the board (ELECTRIC are immune)\n+30% PARALYSIS duration",
     "MISTY": "+20% SPECIAL\n+30% CHARM duration",
-    "WINDY": "+10% dodge chance (+20% if FLYING)",
+    "WINDY": "+10% dodge chance (+20% if AIR or FLYING)",
     "NIGHT": "+20% CRIT_CHANCE\n+30% SLEEP duration",
     "HYDRATATION": "GRASS synergy is healing 5 additional HP per second under the RAIN",
     "POISON_GAS": "Inflicts POISONNED every second",
@@ -1798,7 +1803,7 @@
     "ETHEREAL": "Ally team gains 5% ATK_SPEED and 12 HP per unique active synergy",
     "GUST": "When below 50% HP, your Pokémon create an Air Bubble, protecting against 2 basic attacks",
     "HURRICANE": "Air Bubbles now protect against 4 attacks",
-    "AEROBLAST": "Air bubbles now protect against 6 basic attacks. Your whole team gains +1 RANGE"
+    "AEROBLAST": "Air Bubbles now protect against 6 basic attacks. Your whole team gains +1 RANGE"
   },
   "item": {
     "FOSSIL_STONE": "Fossil Stone",
@@ -2443,7 +2448,7 @@
   "weather_description": {
     "NEUTRAL": "Normal weather. No effects.",
     "SUN": "BURN damage +30%\nFREEZE duration -30%",
-    "WINDY": "+10% dodge chance (+20% if FLYING)",
+    "WINDY": "+10% dodge chance (+20% if AIR or FLYING)",
     "RAIN": "+3 PP per second\n-30% BURN and POISONNED damage",
     "NIGHT": "+10% CRIT_CHANCE\n+30% SLEEP duration",
     "STORM": "Lightning randomly strikes on the board, dealing 100 SPECIAL (ELECTRIC are immune)\n+30% PARALYSIS duration",
