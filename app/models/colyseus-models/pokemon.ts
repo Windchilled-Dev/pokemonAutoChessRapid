@@ -14570,6 +14570,55 @@ export class Corviknight extends Pokemon {
   attackSprite = AttackSprite.STEEL_MELEE
 }
 
+export class Cottonee extends Pokemon {
+  types = new SetSchema<Synergy>([
+    Synergy.GRASS,
+    Synergy.FAIRY,
+    Synergy.AIR
+  ])
+  rarity = Rarity.RARE
+  stars = 1
+  evolution = Pkm.WHIMSICOTT
+  hp = 75
+  atk = 7
+  def = 2
+  speDef = 2
+  maxPP = 60
+  range = 3
+  skill = Ability.TAILWIND
+  passive = Passive.PRANKSTER
+  attackSprite = AttackSprite.FLYING_RANGE
+  regional = true
+
+  afterSimulationStart({ entity }: { entity: IPokemonEntity }) {
+    entity.pp += this.maxPP
+  }
+}
+
+export class Whimsicott extends Pokemon {
+  types = new SetSchema<Synergy>([
+    Synergy.GRASS,
+    Synergy.FAIRY,
+    Synergy.AIR
+  ])
+  rarity = Rarity.RARE
+  stars = 2
+  hp = 180
+  atk = 16
+  def = 3
+  speDef = 3
+  maxPP = 60
+  range = 3
+  skill = Ability.TAILWIND
+  passive = Passive.PRANKSTER
+  attackSprite = AttackSprite.FLYING_RANGE
+  regional = true
+
+  afterSimulationStart({ entity }: { entity: IPokemonEntity }) {
+    entity.pp += this.maxPP
+  }
+}
+
 export const PokemonClasses: Record<
   Pkm,
   new (
@@ -15402,5 +15451,7 @@ export const PokemonClasses: Record<
   [Pkm.SWELLOW]: Swellow,
   [Pkm.ROOKIDEE]: Rookidee,
   [Pkm.CORVISQUIRE]: Corvisquire,
-  [Pkm.CORVIKNIGHT]: Corviknight
+  [Pkm.CORVIKNIGHT]: Corviknight,
+  [Pkm.COTTONEE]: Cottonee,
+  [Pkm.WHIMSICOTT]: Whimsicott
 }

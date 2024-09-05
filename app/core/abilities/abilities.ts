@@ -4080,7 +4080,8 @@ export class HurricaneStrategy extends AbilityStrategy {
           pokemon,
           crit
         )
-        targetInLine.status.triggerParalysis(4000, targetInLine)
+        //targetInLine.status.triggerParalysis(4000, targetInLine)
+        targetInLine.status.triggerLocked(60000, pokemon)
       }
     })
   }
@@ -9617,6 +9618,68 @@ export class SteelWingStrategy extends AbilityStrategy {
   }
 }
 
+export class TailwindStrategy extends AbilityStrategy {
+  process(
+    pokemon: PokemonEntity,
+    state: PokemonState,
+    board: Board,
+    target: PokemonEntity,
+    crit: boolean
+  ) {
+    super.process(pokemon, state, board, target, crit)
+    let affectedUnits = new Array<PokemonEntity>
+    const startingAP = pokemon.ap
+    const atkSpdBuff = (20 * (1 + startingAP / 100))
+
+    if (pokemon.stars === 1) {
+      
+      board
+      .getAdjacentCells(pokemon.positionX, pokemon.positionY)
+      .forEach((cell) => {
+        if (cell.value && cell.value.team === pokemon.team) {
+          affectedUnits.push(cell.value)
+          cell.value.addAttackSpeed(atkSpdBuff, pokemon, 0, crit)
+          cell.value.moveSpeedMod +=  (0.2 * (1 + startingAP / 100))
+
+          pokemon.simulation.room.broadcast(Transfer.ABILITY, {
+            id: pokemon.simulation.id,
+            skill: "TAILWIND/buff",
+            positionX: cell.value.positionX,
+            positionY: cell.value.positionY
+          })
+        }
+      })
+    } else {
+      board.forEach((x, y, tg) => {
+        if (tg && pokemon.team == tg.team && tg !== pokemon) {
+          affectedUnits.push(tg)
+          tg.addAttackSpeed(atkSpdBuff, pokemon, 1, crit)
+          tg.moveSpeedMod += (0.2 * (1 + startingAP / 100)) 
+
+          pokemon.simulation.room.broadcast(Transfer.ABILITY, {
+            id: pokemon.simulation.id,
+            skill: "TAILWIND/buff",
+            positionX: tg.positionX,
+            positionY: tg.positionY
+          })
+        }
+      })
+    }
+
+    pokemon.commands.push(
+      new AbilityCommand(
+        () => {
+          affectedUnits.forEach((unit) => {
+            unit.addAttackSpeed(-atkSpdBuff, pokemon, 1, crit)
+            unit.moveSpeedMod -= (0.2 * (1 + startingAP / 100))
+          })
+        },
+          3000 * (1 + startingAP / 100)
+      )
+    )
+  }
+}
+
 export * from "./hidden-power"
 
 export const AbilityStrategies: { [key in Ability]: AbilityStrategy } = {
@@ -9972,5 +10035,6 @@ export const AbilityStrategies: { [key in Ability]: AbilityStrategy } = {
   [Ability.SCHOOLING]: new SchoolingStrategy(),
   [Ability.DOUBLE_SHOCK]: new DoubleShockStrategy(),
   [Ability.REVERSAL]: new ReversalStrategy(),
-  [Ability.STEEL_WING]: new SteelWingStrategy()
+  [Ability.STEEL_WING]: new SteelWingStrategy(),
+  [Ability.TAILWIND]: new TailwindStrategy()
 }

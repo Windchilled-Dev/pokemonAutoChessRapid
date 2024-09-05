@@ -72,6 +72,7 @@ export class PokemonEntity extends Schema implements IPokemonEntity {
   @type("uint8") team: number
   @type("uint8") range: number
   @type("float32") atkSpeed: number
+  @type("float32") moveSpeedMod: number
   @type("int8") targetX = -1
   @type("int8") targetY = -1
   @type("string") attackSprite: AttackSprite
@@ -156,6 +157,7 @@ export class PokemonEntity extends Schema implements IPokemonEntity {
     this.maxPP = pokemon.maxPP
     this.life = pokemon.hp
     this.atkSpeed = pokemon.atkSpeed
+    this.moveSpeedMod = 0
     this.range = pokemon.range
     this.team = team
     this.attackSprite = pokemon.attackSprite
@@ -1772,6 +1774,8 @@ export function getMoveSpeed(
   } else if (pokemon.effects.has(Effect.BERSERK)) {
     moveSpeed += 1.0
   }
+
+  moveSpeed += pokemon.moveSpeedMod
 
   return moveSpeed
 }

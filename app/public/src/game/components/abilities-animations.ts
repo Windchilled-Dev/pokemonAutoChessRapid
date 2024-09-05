@@ -1273,7 +1273,11 @@ export function displayAbility(
       break
 
     case "STEEL_WING/feathers":
-      addAbilitySprite("STEEL_WING/feathers", coordinatesTarget, true).setScale(2)
+      addAbilitySprite("STEEL_WING/feathers", coordinates, true).setScale(2)
+      break
+
+    case "TAILWIND/buff":
+      addAbilitySprite("TAILWIND/buff", coordinates, true).setScale(2)
       break
 
     case Ability.WATERFALL:

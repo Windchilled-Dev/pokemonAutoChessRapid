@@ -373,7 +373,8 @@
     "SCHOOLING": "Schooling",
     "DOUBLE_SHOCK": "Double Shock",
     "REVERSAL": "Reversal",
-    "STEEL_WING": "Steel Wing"
+    "STEEL_WING": "Steel Wing",
+    "TAILWIND": "Tailwind"
   },
   "pkm": {
     "DEFAULT": "MissingNo.",
@@ -1202,7 +1203,9 @@
     "SWELLOW": "Swellow",
     "ROOKIDEE": "Rookidee",
     "CORVISQUIRE": "Corvisquire",
-    "CORVIKNIGHT": "Corviknight"
+    "CORVIKNIGHT": "Corviknight",
+    "COTTONEE": "Cottonee",
+    "WHIMSICOTT": "Whimsicott"
   },
   "ability_description": {
     "SOFT_BOILED": "Cures all status effects and grants [20,40,80,SP] SHIELD to every allied Pokémon",
@@ -1556,7 +1559,8 @@
     "DOUBLE_SHOCK": "The user emits a powerful electric shock, dealing [50,100,200,SP] SPECIAL. The user is PARALYSIS for 3 seconds.",
     "PURIFY": "Clear negative status and heal the user for [15,30,60,SP] HP.",
     "REVERSAL": "Deals [1,SP] SPECIAL per % of user max HP missing",
-    "STEEL_WING": "Deal [20,30,60,SP] SPECIAL to the target and buff the user's DEF by [1,3,5,SP]"
+    "STEEL_WING": "Deal [20,30,60,SP] SPECIAL to the target and buff the user's DEF by [1,3,5,SP]",
+    "TAILWIND": "For [3,SP] seconds, buff #adjacent,all# allies' move and ATK_SPEED by [20,SP]%"
   },
   "effect": {
     "INGRAIN": "Ingrain",
@@ -2131,7 +2135,8 @@
     "SLOW_START": "Starts at 0.5 ATK_SPEED. After first ability cast, gains 30% ATK_SPEED and 10 ATK",
     "STONJOURNER": "Does not move or attack until PP bar is full. Its power spot gives 50% AP to all adjacent allies at the start of the fight",
     "POISON_PIN": "Poipole will evolve into Naganadel after stacking 200 HP",
-    "PYUKUMUKU": "When this pokemon is KO, it explodes dealing [100,SP] SPECIAL to adjacent enemies."
+    "PYUKUMUKU": "When this pokemon is KO, it explodes dealing [100,SP] SPECIAL to adjacent enemies.",
+    "PRANKSTER": "Starts each fight with full PP"
   },
   "stat": {
     "ATK": "Attack",

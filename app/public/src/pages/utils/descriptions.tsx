@@ -25,7 +25,7 @@ export const iconRegExp = new RegExp(
     ...Items,
     "GOLD",
     "STAR"
-  ].join("|")}|\\[[^\\]]+\\])(?=\\W|$)`,
+  ].join("|")}|\\[[^\\]]+\\]|#[^\#]+#)(?=\\W|$)`,
   "g"
 )
 
@@ -109,6 +109,31 @@ export function addIconsToDescription(description: string, tier = 0, ap = 0) {
           <span className="description-icon synergy">
             <SynergyIcon type={token as Synergy} size="1.5em" />
             <span className="synergy-label">{t(`synergy.${token}`)}</span>
+          </span>
+        )
+      } else if (/\#[^\#]+\#/.test(token)) {
+        const array = token.slice(1, -1).split(",")
+
+        d = (
+          <span
+            className={cc("description-icon")}
+          >
+
+            {array.map((v, j) => {
+              const separator = j < array.length - 1 ? "/" : ""
+              const value = v
+              const active =
+                tier === undefined ||
+                array.length === 1 ||
+                j === tier - 1 ||
+                (tier > array.length && j === array.length - 1)
+              return (
+                <span key={j} className="ability-value">
+                  <span className={cc({ active })}>{value}</span>
+                  {separator}
+                </span>
+              )
+            })}
           </span>
         )
       } else if (/\[[^\]]+\]/.test(token)) {
