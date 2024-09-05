@@ -48,7 +48,7 @@ import { Weather } from "../../types/enum/Weather"
 import { createRandomEgg } from "../../models/egg-factory"
 import PokemonFactory from "../../models/pokemon-factory"
 import Board, { Cell } from "../board"
-import { PokemonEntity, getStrongestUnit } from "../pokemon-entity"
+import { PokemonEntity, getStrongestUnit, getMoveSpeed } from "../pokemon-entity"
 import PokemonState from "../pokemon-state"
 
 import { getFirstAvailablePositionInBench } from "../../utils/board"
@@ -4080,8 +4080,7 @@ export class HurricaneStrategy extends AbilityStrategy {
           pokemon,
           crit
         )
-        //targetInLine.status.triggerParalysis(4000, targetInLine)
-        targetInLine.status.triggerLocked(60000, pokemon)
+        targetInLine.status.triggerParalysis(4000, targetInLine)
       }
     })
   }
@@ -9680,6 +9679,63 @@ export class TailwindStrategy extends AbilityStrategy {
   }
 }
 
+export class ElectroBallStrategy extends AbilityStrategy {
+  process(
+    pokemon: PokemonEntity,
+    state: PokemonState,
+    board: Board,
+    target: PokemonEntity,
+    crit: boolean
+  ) {
+    super.process(pokemon, state, board, target, crit)
+
+    
+    const moveSpeed = getMoveSpeed(pokemon, pokemon.simulation.weather)
+    const baseDamage = pokemon.stars === 3 ? 75 : pokemon.stars === 2 ? 50 : 25
+    const damage = baseDamage * moveSpeed
+    
+    const furthestTarget = state.getFarthestTarget(pokemon, board)
+
+    
+    if (furthestTarget) {
+      pokemon.simulation.room.broadcast(Transfer.ABILITY, {
+        id: pokemon.simulation.id,
+        skill: "ELECTRO_BALL/ball",
+        positionX: pokemon.positionX,
+        positionY: pokemon.positionY,
+        targetX: furthestTarget.positionX,
+        targetY: furthestTarget.positionY
+      })
+
+      pokemon.commands.push(
+          new AbilityCommand(() => {
+            pokemon.simulation.room.broadcast(Transfer.ABILITY, {
+              id: pokemon.simulation.id,
+              skill: "ELECTRO_BALL/hit",
+              positionX: furthestTarget.positionX,
+              positionY: furthestTarget.positionY
+            })
+
+            furthestTarget.handleSpecialDamage(
+              damage,
+              board,
+              AttackType.SPECIAL,
+              pokemon,
+              crit
+            )
+          }, distanceM(
+            furthestTarget.positionX,
+            furthestTarget.positionY,
+            pokemon.positionX,
+            pokemon.positionY
+          ) *
+            180 -
+            30)
+        )
+    }
+  }
+}
+
 export * from "./hidden-power"
 
 export const AbilityStrategies: { [key in Ability]: AbilityStrategy } = {
@@ -10036,5 +10092,6 @@ export const AbilityStrategies: { [key in Ability]: AbilityStrategy } = {
   [Ability.DOUBLE_SHOCK]: new DoubleShockStrategy(),
   [Ability.REVERSAL]: new ReversalStrategy(),
   [Ability.STEEL_WING]: new SteelWingStrategy(),
-  [Ability.TAILWIND]: new TailwindStrategy()
+  [Ability.TAILWIND]: new TailwindStrategy(),
+  [Ability.ELECTRO_BALL]: new ElectroBallStrategy()
 }

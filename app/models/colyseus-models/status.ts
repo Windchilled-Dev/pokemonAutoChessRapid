@@ -47,6 +47,7 @@ export default class Status extends Schema implements IStatus {
   magmaStorm = false
   soulDew = false
   clearWing = false
+  motorDrive = false
   guts = false
   toxicBoost = false
   burnOrigin: PokemonEntity | undefined = undefined
@@ -56,6 +57,7 @@ export default class Status extends Schema implements IStatus {
   charmOrigin: PokemonEntity | undefined = undefined
   magmaStormOrigin: PokemonEntity | null = null
   clearWingCooldown = 1000
+  motorDriveCooldown = 1000
   burnCooldown = 0
   burnDamageCooldown = 1000
   silenceCooldown = 0
@@ -226,6 +228,10 @@ export default class Status extends Schema implements IStatus {
       this.updateClearWing(dt, pokemon)
     }
 
+    if (this.motorDrive) {
+      this.updateMotorDrive(dt, pokemon)
+    }
+
     if (this.drySkin) {
       this.updateDrySkin(dt, pokemon)
     }
@@ -349,6 +355,23 @@ export default class Status extends Schema implements IStatus {
       pkm.addAttackSpeed(2, pkm, 0, false)
     } else {
       this.clearWingCooldown -= dt
+    }
+  }
+
+  triggerMotorDrive(timer: number) {
+    if (!this.motorDrive) {
+      this.motorDrive = true
+      this.motorDriveCooldown = timer
+    }
+  }
+
+  updateMotorDrive(dt: number, pkm: PokemonEntity) {
+    if (this.motorDriveCooldown - dt <= 0) {
+      this.motorDrive = false
+      this.triggerMotorDrive(1000)
+      pkm.moveSpeedMod += 0.02
+    } else {
+      this.motorDriveCooldown -= dt
     }
   }
 

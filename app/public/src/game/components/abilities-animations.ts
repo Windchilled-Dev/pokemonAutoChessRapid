@@ -1618,6 +1618,36 @@ export function displayAbility(
       break
     }
 
+    case "ELECTRO_BALL/ball": {
+      const duration = distanceM(positionX, positionY, targetX, targetY) * 180
+
+      const specialProjectile = addAbilitySprite(skill, coordinates)
+        .setScale(2)
+        .setRotation(
+          Math.atan2(
+            coordinatesTarget[1] - coordinates[1],
+            coordinatesTarget[0] - coordinates[0]
+          ) -
+            Math.PI / 2
+        )
+      scene.tweens.add({
+        targets: specialProjectile,
+        x: coordinatesTarget[0],
+        y: coordinatesTarget[1],
+        ease: "linear",
+        yoyo: false,
+        duration: duration,
+        onComplete: () => {
+          specialProjectile.destroy()
+        }
+      })
+      break
+    }
+
+    case "ELECTRO_BALL/hit":
+      addAbilitySprite(skill, coordinates, true).setScale(2)
+      break
+
     case Ability.AURORA_BEAM: {
       const [dx, dy] = OrientationVector[orientation]
       const finalCoords = transformAttackCoordinate(

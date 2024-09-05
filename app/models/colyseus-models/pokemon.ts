@@ -14583,7 +14583,7 @@ export class Cottonee extends Pokemon {
   atk = 7
   def = 2
   speDef = 2
-  maxPP = 60
+  maxPP = 80
   range = 3
   skill = Ability.TAILWIND
   passive = Passive.PRANKSTER
@@ -14607,7 +14607,7 @@ export class Whimsicott extends Pokemon {
   atk = 16
   def = 3
   speDef = 3
-  maxPP = 60
+  maxPP = 80
   range = 3
   skill = Ability.TAILWIND
   passive = Passive.PRANKSTER
@@ -14616,6 +14616,27 @@ export class Whimsicott extends Pokemon {
 
   afterSimulationStart({ entity }: { entity: IPokemonEntity }) {
     entity.pp += this.maxPP
+  }
+}
+
+export class Emolga extends Pokemon {
+  types = new SetSchema<Synergy>([
+    Synergy.ELECTRIC,
+    Synergy.AIR
+  ])
+  rarity = Rarity.UNIQUE
+  stars = 3
+  hp = 200
+  atk = 20
+  def = 3
+  speDef = 3
+  maxPP = 100
+  range = 1
+  skill = Ability.ELECTRO_BALL
+  passive = Passive.MOTOR_DRIVE
+  attackSprite = AttackSprite.ELECTRIC_MELEE
+  afterSimulationStart({ entity }: { entity: IPokemonEntity }) {
+    entity.status.triggerMotorDrive(1000)
   }
 }
 
@@ -15453,5 +15474,6 @@ export const PokemonClasses: Record<
   [Pkm.CORVISQUIRE]: Corvisquire,
   [Pkm.CORVIKNIGHT]: Corviknight,
   [Pkm.COTTONEE]: Cottonee,
-  [Pkm.WHIMSICOTT]: Whimsicott
+  [Pkm.WHIMSICOTT]: Whimsicott,
+  [Pkm.EMOLGA]: Emolga
 }

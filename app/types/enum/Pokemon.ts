@@ -828,7 +828,8 @@ export enum Pkm {
   CORVISQUIRE = "CORVISQUIRE",
   CORVIKNIGHT = "CORVIKNIGHT",
   COTTONEE = "COTTONEE",
-  WHIMSICOTT = "WHIMSICOTT"
+  WHIMSICOTT = "WHIMSICOTT",
+  EMOLGA = "EMOLGA"
 }
 
 export const PkmIndex: { [key in Pkm]: string } = {
@@ -1659,7 +1660,8 @@ export const PkmIndex: { [key in Pkm]: string } = {
   [Pkm.CORVISQUIRE]: "0822",
   [Pkm.CORVIKNIGHT]: "0823",
   [Pkm.COTTONEE]: "0546",
-  [Pkm.WHIMSICOTT]: "0547"
+  [Pkm.WHIMSICOTT]: "0547",
+  [Pkm.EMOLGA]: "0587"
 }
 
 export const PkmFamily: { [key in Pkm]: Pkm } = {
@@ -2490,7 +2492,8 @@ export const PkmFamily: { [key in Pkm]: Pkm } = {
   [Pkm.CORVISQUIRE]: Pkm.ROOKIDEE,
   [Pkm.CORVIKNIGHT]: Pkm.ROOKIDEE,
   [Pkm.COTTONEE]: Pkm.COTTONEE,
-  [Pkm.WHIMSICOTT]: Pkm.COTTONEE
+  [Pkm.WHIMSICOTT]: Pkm.COTTONEE,
+  [Pkm.EMOLGA]: Pkm.EMOLGA
 }
 
 export const PkmRegionalVariants: { [key in Pkm]?: Pkm[] } = {
@@ -6796,6 +6799,11 @@ export const AnimationConfig: {
   [Pkm.WHIMSICOTT]: {
     attack: AnimationType.Shoot,
     ability: AnimationType.Hop,
+    emote: AnimationType.Idle
+  },
+  [Pkm.EMOLGA]: {
+    attack: AnimationType.Attack,
+    ability: AnimationType.Shock,
     emote: AnimationType.Idle
   }
 }
